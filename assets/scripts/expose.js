@@ -1,5 +1,4 @@
 // expose.js
-
 window.addEventListener('DOMContentLoaded', init);
 
 
@@ -8,19 +7,15 @@ function init() {
   const horn = document.getElementById("horn-select");
   const img = document.querySelector("img");
   const aud = document.querySelector("audio");
-  const volume = aud.volume;
+  const jsConfetti = new JSConfetti();
   horn.addEventListener("change", (event) => {
     img.src = "./assets/images/" + horn.value + ".svg";
     aud.src = "./assets/audio/" + horn.value + ".mp3";
-    console.log(img.src);
-    console.log(aud.src);
-    console.log(volume);
   });
 
   //volume slider
   const slider = document.getElementById("volume");
   const volIcon = document.getElementById("volume-controls").querySelector("img");
-  console.log(volIcon);
   slider.addEventListener("input", (event) => {
     if(slider.value == 0)
       volIcon.src = "./assets/icons/volume-level-0.svg";
@@ -35,5 +30,9 @@ function init() {
 
   //play horn audio
   const playBtn = document.querySelector("button");
-  playBtn.addEventListener("click", (event) => {aud.play();});
+  playBtn.addEventListener("click", (event) => {
+    aud.play();
+    if(horn.value == "party-horn")
+      jsConfetti.addConfetti();
+  });
 }
