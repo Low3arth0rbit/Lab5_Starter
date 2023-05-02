@@ -18,6 +18,20 @@ function init() {
   });
 
   //volume slider
+  const slider = document.getElementById("volume");
+  const volIcon = document.getElementById("volume-controls").querySelector("img");
+  console.log(volIcon);
+  slider.addEventListener("input", (event) => {
+    if(slider.value == 0)
+      volIcon.src = "./assets/icons/volume-level-0.svg";
+    else if(slider.value < 33)
+      volIcon.src = "./assets/icons/volume-level-1.svg";
+    else if(slider.value < 67)
+      volIcon.src = "./assets/icons/volume-level-2.svg";
+    else
+      volIcon.src = "./assets/icons/volume-level-3.svg";
+    aud.volume = slider.value/100;
+  });
 
   //play horn audio
   const playBtn = document.querySelector("button");
